@@ -1,256 +1,87 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Student.css";
-
+import StudentHook from "../../../Hooks/Student/AddStudent.hook";
+import { toast } from "react-toastify";
+import GetAllDataStudentsHook from "../../../Hooks/Student/GetAllStudent.hook";
 export default function Student() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [showaddForm, setShowaddForm] = useState(false);    
-  const students = [
-    {
-      name: "Ankit Sharma",
-      email: "ankit@example.com",
-      phone: "9876543210",
-      fees: "₹15,000",
-      status: "Active",
-    },
-    {
-      name: "Priya Meena",
-      email: "priya@example.com",
-      phone: "9123456780",
-      fees: "₹12,500",
-      status: "Pending",
-    },
-    {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    },
-    {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    }, {
-      name: "Rahul Verma",
-      email: "rahul@example.com",
-      phone: "9000000000",
-      fees: "₹0",
-      status: "Inactive",
-    },
-  ];
+  const [showaddForm, setShowaddForm] = useState(false);
+
+
+  const { isLoading, error, AddStudent } = StudentHook();
+  const { AllStudents,getallstudents, IsLoading, err } = GetAllDataStudentsHook()
+
+
+
+//get all students data
+useEffect(() =>{
+  AllStudents()
+}, [])
+
+
+
+
+
+    //add data 
+  const [studentData, setStudentData] = useState({
+    Name: "",
+    Email: "",
+    PhoneNumber: "",
+    Address: "",
+    DateOfBirth: "",
+    Fees: "",
+    Status: "Active",
+  });
+
+
+  const handleAddStudent = async (e) => {
+    e.preventDefault();
+    if (!studentData.Name || !studentData.PhoneNumber || !studentData.Fees) {
+      toast.error("All fields are required");
+      return;
+    }
+    if (studentData.Fees < 0) {
+      toast.error("Fees cannot be negative");
+      return;
+    }
+    if (studentData.Name.length <= 3) {
+      toast.error("Student name is too short! Max 4 alphabet");
+    }
+
+    const response = await AddStudent(studentData);
+    if (response.success) {
+      toast.success(response.message);
+      setStudentData({
+        Name: "",
+        Email: "",
+        PhoneNumber: "",
+        Address: "",
+        DateOfBirth: "",
+        Fees: "",
+        Status: "Active",
+      });
+      setShowaddForm(false);
+    } else {
+      toast.error(response.message);
+    }
+    AllStudents();
+  };
+
+  const handleChange = (e) => {
+    setStudentData({ ...studentData, [e.target.name]: e.target.value });
+  };
+
+  const handleChangePhone = (e) => {
+    const { name, value } = e.target;
+    if (name === "PhoneNumber") {
+      const onlyNums = value.replace(/[^0-9]/g, "").slice(0, 10);
+      setStudentData({ ...studentData, [name]: onlyNums });
+    } else {
+      setStudentData({ ...studentData, [name]: value });
+    }
+  };
+ 
 
   const handleView = (student) => {
     setSelectedStudent(student);
@@ -259,42 +90,59 @@ export default function Student() {
 
   return (
     <div className=" student-table-container">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-      <h3 className="mb-4"><i className="fa fa-book" ></i> Student List</h3>
-    <button className="btn add-btn  mb-3" onClick={() => setShowaddForm(true)}>
-            <i className="fa fa-plus-circle"></i> Add Students
-    </button>
-        </div>
-      <div className="">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3 className="mb-4">
+          <i className="fa fa-book"></i> Student List
+        </h3>
+        <button
+          className="btn add-btn  mb-3"
+          onClick={() => setShowaddForm(true)}
+        >
+          <i className="fa fa-plus-circle"></i> Add Students
+        </button>
+      </div>
+      <div className="table-responsive">
         <table className="table table-bordered table-hover text-center custom-student-table">
           <thead className="table-dark">
             <tr>
+              <th className="text-start">Seat No.</th>
+              <th>Course</th>
               <th>Name</th>
-              <th>Fees</th>
               <th>Email</th>
               <th>Phone</th>
+              <th>Address</th>
+              <th>D.O.B</th>
+              <th>Fees</th>
+               <th>Check-In</th>
+              <th>Check-Out</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {students.map((stu, index) => (
+            {getallstudents.map((stu, index) => (
               <tr key={index}>
-                <td>{stu.name}</td>
-                <td>{stu.fees}</td>
-                <td>{stu.email}</td>
-                <td>{stu.phone}</td>
+                <td className="text-start">{stu.Name}</td>
+                <td>{stu.Name}</td>
+                <td>{stu.Name}</td>
+                <td>{stu.Email}</td>
+                <td>{stu.PhoneNumber}</td>
+                <td>{stu.Address}</td>
+                <td>{stu.DateOfBirth}</td>
+                <td>{stu.DateOfBirth}</td>
+                <td>{stu.DateOfBirth}</td>
+                <td>{stu.Fees}</td>
                 <td>
                   <span
                     className={`badge rounded-pill bg-${
-                      stu.status === "Active"
+                      stu.Status === "Active"
                         ? "success"
-                        : stu.status === "Pending"
+                        : stu.Status === "Pending"
                         ? "warning text-dark"
                         : "secondary"
                     }`}
                   >
-                    {stu.status}
+                    {stu.Status}
                   </span>
                 </td>
                 <td>
@@ -369,50 +217,107 @@ export default function Student() {
         </div>
       )}
 
+      {showaddForm && (
+        <div className="modal-backdrop">
+          <div className="student-modal">
+            <div className="modal-header1">
+              <h5 className="modal-title">Add Student</h5>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handleAddStudent}>
+                <div className="mb-3">
+                  <label className="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    className="form-field"
+                    name="Name"
+                    value={studentData.Name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="text"
+                    className="form-field"
+                    name="Email"
+                    value={studentData.Email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Phone Number</label>
+                  <input
+                    type="text"
+                    className="form-field"
+                    name="PhoneNumber"
+                    value={studentData.PhoneNumber}
+                    onChange={handleChangePhone}
+                    maxLength={10}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Address</label>
+                  <input
+                    type="text"
+                    className="form-field"
+                    name="Address"
+                    value={studentData.Address}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Date of birth</label>
+                  <input
+                    type="Date"
+                    className="form-field"
+                    name="DateOfBirth"
+                    value={studentData.DateOfBirth}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Fees</label>
+                  <input
+                    type="Number"
+                    className="form-field"
+                    name="Fees"
+                    value={studentData.Fees}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-      {
-        showaddForm && (
-          <div className="modal-backdrop">
-            <div className="student-modal">
-              <div className="modal-header1">
-                <h5 className="modal-title">Add Student</h5>
-              </div>
-              <div className="modal-body">
-                <form>
-                  <div className="mb-3">
-                    <label className="form-label">Full Name</label>
-                    <input type="text" className="form-control" required />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Email</label>
-                    <input type="email" className="form-control" required />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Phone</label>
-                    <input type="text" className="form-control" required />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Fees</label>
-                    <input type="text" className="form-control" required />
-                  </div>
-                  <button type="submit" className="btn btn-primary">
-                    Add Student
-                  </button>
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => setShowaddForm(false)}
-                >
-                  Close
+                <div className="mb-3">
+                  <label className="form-label">Status</label>
+                  <select
+                    className="form-field"
+                    name="Status"
+                    value={studentData.Status}
+                    onChange={handleChange}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Add Student
                 </button>
-              </div>
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button
+                className="btn btn-danger"
+                onClick={() => setShowaddForm(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
-        )
-
-      }
+        </div>
+      )}
     </div>
   );
 }

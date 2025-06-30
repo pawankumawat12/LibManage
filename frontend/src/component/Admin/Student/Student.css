@@ -1,6 +1,10 @@
 .container {
   margin: 0;
 }
+.table-responsive{
+  height: 70vh;
+  scrollbar-width: thin;
+}
 .student-table-container {
   padding: 20px;
   background-color: #f8f9fa;
@@ -12,6 +16,7 @@
   vertical-align: middle;
 }
 
+
 .custom-student-table td {
   font-size: 14px;
   white-space: nowrap;
@@ -21,6 +26,9 @@
 
 .custom-student-table th {
   font-size: 15px;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -58,6 +66,10 @@
 
 .modal-body {
   padding: 15px;
+  height: 450px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  
 }
 
 .detail-table {
@@ -106,7 +118,15 @@
   transition: all 0.3s ease;
 }
 @media screen and (max-width: 600px) {
-    .add-btn {
-        width: auto;
-    }
+  .add-btn {
+    width: auto;
+  }
+}
+
+.form-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }

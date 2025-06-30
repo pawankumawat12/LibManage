@@ -17,7 +17,7 @@ function Navbar() {
         </Link>
 
         <button
-          className="navbar-toggler "
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -30,7 +30,7 @@ function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
+            <li className="nav-item active">
               <Link className="nav-link" to="/Library">
                 Home
               </Link>

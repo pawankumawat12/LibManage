@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Register.css";
-import AuthHook from "../../Hooks/Auth/Auth.hook";
+import AuthHook from "../../Hooks/Auth/Register.hook";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
