@@ -1,0 +1,127 @@
+.book-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.book-container h2,
+.book-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.book-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.input-icon input,
+.input-icon select {
+  width: 100%;
+  padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.book-form button {
+  grid-column: span 2;
+  background-color: #1e293b;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.book-form button i {
+  margin-right: 6px;
+}
+
+.book-form button:hover {
+    background-color: #fff;
+    color: #1e293b;
+    transition: all 0.3s ease;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.book-table th,
+.book-table td {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  text-align: center;
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.book-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.book-table td {
+  color: #333;
+}
+
+.action-btn {
+  margin: 0 4px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .book-form {
+    grid-template-columns: 1fr;
+  }
+
+  .book-form button {
+    grid-column: span 1;
+  }
+
+  .book-container {
+    padding: 1rem;
+  }
+}

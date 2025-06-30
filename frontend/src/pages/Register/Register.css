@@ -1,0 +1,153 @@
+  .modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.close-btn {
+  background-color: antiquewhite;
+  font-size: 24px;
+  cursor: pointer;
+  border: 2px solid rgb(184, 133, 66);
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background-color: rgb(184, 133, 66);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.email,
+.password {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.email:focus,
+.password:focus {
+  border-color: #3b82f6;
+}
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #2563eb;
+}
+
+.or {
+  text-align: center;
+  margin: 10px 0;
+  color: #555;
+}
+
+.or span {  
+  font-weight: bold;
+}
+
+.or p {
+  font-weight: 500;
+  margin-top: 5px;
+    color: #0713259c;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-login button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.reglink{
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+.google-btn:hover {
+background-color: #a3281d;}
+
+
+@media (max-width: 480px) {
+  .modal-content {
+    margin: 0 10px;
+    padding: 15px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .login-btn,
+  .social-login button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .close-btn {
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+  }
+}
