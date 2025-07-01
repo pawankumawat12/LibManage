@@ -1,6 +1,21 @@
 const mongoose = require("mongoose");
 const StudentSchema = new mongoose.Schema(
   {
+    SeatNo: {
+      type: Number,
+      requied: true,
+      unique: true,
+      trim: true,
+    },
+    Course: {
+      type: String,
+      trim: true,
+    },
+    AadharNo: {
+      type: String,
+      required: true,
+      trim: true
+    },
     Name: {
       type: String,
       required: true,
@@ -28,11 +43,6 @@ const StudentSchema = new mongoose.Schema(
     },
     DateOfBirth: {
       type: Date,
-    },
-    Status: {
-      type: String,
-      enum: ["Active", "Inactive"],
-      default: "Active",
     },
   },
   { timestamps: true }

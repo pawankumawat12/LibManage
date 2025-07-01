@@ -1,68 +1,136 @@
-import { useState } from 'react';
-import './MyDetails.css';
+import { useState } from "react";
+import "./MyDetails.css";
+import MyDetailHook from "../../../Hooks/MyDetails/MyDetails.hook";
+import { toast } from "react-toastify";
 
 export default function MyDetails() {
-  const [showForm, setShowForm] = useState(true);
-  const [formData, setFormData] = useState({
-    email: '',
-    phone: '',
-    address: '',
-    location: ''
+  
+
+  //add details
+  const { error, myDetails } = MyDetailHook();
+  const [detailData, setDetailData] = useState({
+    Email: "",
+    PhoneNumber: "",
+    Address: "",
+    Seats: ""
   });
+  const [showForm, setShowForm] = useState(true);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowForm(false); 
+
+    if(!detailData.Email || !detailData.PhoneNumber || !detailData.Address || !detailData.Seats){
+      toast.error("All field are required");
+      return;
+    }
+    if(detailData.PhoneNumber.length <10){
+      toast.error("Phone number should have 10 digit");
+      return;
+    }
+    const response = await myDetails(detailData);
+    if (response.success) {
+      toast.success(response.message);
+      setDetailData({
+        Email: "",
+        PhoneNumber: "",
+        Address: "",
+        Seats: "",
+      });
+      setShowForm(false)
+    } else {
+      toast.error(response.error);
+    }
+    
+  };
+  const handleChange = (e) => {
+    setDetailData({ ...detailData, [e.target.name]: e.target.value });
   };
 
+  const handleChangePhone = (e) => {
+    const { name, value } = e.target;
+    if (name === "PhoneNumber") {
+      const onlyNums = value.replace(/[^0-9]/g, "").slice(0, 10);
+      setDetailData({ ...detailData, [name]: onlyNums });
+    } else {
+      setDetailData({ ...detailData, [name]: value });
+    }
+  };
   const handleEdit = () => {
-    setShowForm(true); 
+    setShowForm(true);
   };
 
   return (
     <div className="details-box">
-      <h2> <i className='fa fa-book '></i> My Details</h2>
+      <h2>
+        {" "}
+        <i className="fa fa-book "></i> My Details
+      </h2>
 
       {showForm ? (
-        <form onSubmit={handleSubmit} className="details-form">
+        <form className="details-form" onSubmit={handleSubmit}>
           <label>
             Email:
-            <input type="email" name="email" required value={formData.email} onChange={handleChange} />
+            <input
+              type="email"
+              name="Email"
+              value={detailData.Email}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Phone:
-            <input type="text" name="phone" required value={formData.phone} onChange={handleChange} />
+            <input
+              type="text"
+              name="PhoneNumber"
+              value={detailData.PhoneNumber}
+              onChange={handleChangePhone}
+            />
           </label>
           <label>
             Address:
-            <input type="text" name="address" required value={formData.address} onChange={handleChange} />
+            <input
+              type="text"
+              name="Address"
+              value={detailData.Address}
+              onChange={handleChange}
+            />
           </label>
-          <button type="submit" className="save-btn">Save</button>
+           <label>
+            How many seats in library:
+            <input
+              type="number"
+              name="Seats"
+              value={detailData.Seats}
+              onChange={handleChange}
+            />
+          </label>
+          <button type="submit" className="save-btn">
+            Save
+          </button>
         </form>
       ) : (
         <>
-          <div className="details-row">
+         <div className="details-row">
             <label>Email:</label>
-            <span>{formData.email}</span>
+            <span>{detailData.Email}</span>
           </div>
           <div className="details-row">
             <label>Phone:</label>
-            <span>{formData.phone}</span>
+            <span>{detailData.PhoneNumber}</span>
           </div>
           <div className="details-row">
             <label>Address:</label>
-            <span>{formData.address}</span>
+            <span>{detailData.Address}</span>
           </div>
           <div className="details-row">
-            <label>Location:</label>
-            <span>{formData.location}</span>
+            <label>Seats:</label>
+            <span>{detailData.Seats}</span>
           </div>
+
           <div className="edit-btn-wrapper">
-            <button type="button" className="edit-btn" onClick={handleEdit}>Edit</button>
+            <button type="button" className="edit-btn" onClick={handleEdit}>
+              Edit
+            </button>
           </div>
         </>
       )}

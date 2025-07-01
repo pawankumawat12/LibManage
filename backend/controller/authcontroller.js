@@ -46,7 +46,6 @@ const registerAdmin = async (req, res) => {
   }
 };
 
-
 const LoginAdmin = async (req, res) => {
   const { Email, Password } = req.body;
   try {

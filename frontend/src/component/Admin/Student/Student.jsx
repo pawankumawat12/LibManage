@@ -8,32 +8,27 @@ export default function Student() {
   const [showModal, setShowModal] = useState(false);
   const [showaddForm, setShowaddForm] = useState(false);
 
-
   const { isLoading, error, AddStudent } = StudentHook();
-  const { AllStudents,getallstudents, IsLoading, err } = GetAllDataStudentsHook()
+  const { AllStudents, getallstudents, IsLoading, err } =
+    GetAllDataStudentsHook();
 
+  //get all students data
+  useEffect(() => {
+    AllStudents();
+  }, []);
 
-
-//get all students data
-useEffect(() =>{
-  AllStudents()
-}, [])
-
-
-
-
-
-    //add data 
+  //add data
   const [studentData, setStudentData] = useState({
+    SeatNo: "",
+    Course: "",
+    AadharNo: "",
     Name: "",
     Email: "",
     PhoneNumber: "",
     Address: "",
     DateOfBirth: "",
     Fees: "",
-    Status: "Active",
   });
-
 
   const handleAddStudent = async (e) => {
     e.preventDefault();
@@ -53,6 +48,10 @@ useEffect(() =>{
     if (response.success) {
       toast.success(response.message);
       setStudentData({
+        SeatNo: "",
+        Course: "",
+        AadharNo: "",
+
         Name: "",
         Email: "",
         PhoneNumber: "",
@@ -81,7 +80,15 @@ useEffect(() =>{
       setStudentData({ ...studentData, [name]: value });
     }
   };
- 
+  const handleChangeAadhar = (e) => {
+    const { name, value } = e.target;
+    if (name === "AadharNo") {
+      const onlyNums = value.replace(/[^0-9]/g, "").slice(0, 12);
+      setStudentData({ ...studentData, [name]: onlyNums });
+    } else {
+      setStudentData({ ...studentData, [name]: value });
+    }
+  };
 
   const handleView = (student) => {
     setSelectedStudent(student);
@@ -109,65 +116,56 @@ useEffect(() =>{
               <th>Course</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Phone</th>
+              <th>Phone Number</th>
+              <th>Aadhar Number</th>
               <th>Address</th>
               <th>D.O.B</th>
               <th>Fees</th>
-               <th>Check-In</th>
+              <th>Check-In</th>
               <th>Check-Out</th>
-              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {getallstudents.map((stu, index) => (
-              <tr key={index}>
-                <td className="text-start">{stu.Name}</td>
-                <td>{stu.Name}</td>
-                <td>{stu.Name}</td>
-                <td>{stu.Email}</td>
-                <td>{stu.PhoneNumber}</td>
-                <td>{stu.Address}</td>
-                <td>{stu.DateOfBirth}</td>
-                <td>{stu.DateOfBirth}</td>
-                <td>{stu.DateOfBirth}</td>
-                <td>{stu.Fees}</td>
-                <td>
-                  <span
-                    className={`badge rounded-pill bg-${
-                      stu.Status === "Active"
-                        ? "success"
-                        : stu.Status === "Pending"
-                        ? "warning text-dark"
-                        : "secondary"
-                    }`}
-                  >
-                    {stu.Status}
-                  </span>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-outline-info me-1"
-                    title="View"
-                    onClick={() => handleView(stu)}
-                  >
-                    <i className="fa fa-eye"></i>
-                  </button>
-                  <button
-                    className="btn btn-sm btn-outline-warning me-1"
-                    title="Edit"
-                  >
-                    <i className="fa fa-edit"></i>
-                  </button>
-                  <button
-                    className="btn btn-sm btn-outline-danger"
-                    title="Delete"
-                  >
-                    <i className="fa fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {getallstudents.map((stu, index) => {
+              return (
+                <tr key={index}>
+                  <td className="text-start">{stu.SeatNo}</td>
+                  <td>{stu.Course}</td>
+                  <td>{stu.Name}</td>
+                  <td>{stu.Email}</td>
+                  <td>{stu.PhoneNumber}</td>
+                  <td>{stu.AadharNo}</td>
+                  <td>{stu.Address}</td>
+                  <td>{stu.DateOfBirth}</td>
+                  <td>{stu.Fees}</td>
+                  <td></td>
+                  <td></td>
+
+                  <td>
+                    <button
+                      className="btn btn-sm btn-outline-info me-1"
+                      title="View"
+                      onClick={() => handleView(stu)}
+                    >
+                      <i className="fa fa-eye"></i>
+                    </button>
+                    <button
+                      className="btn btn-sm btn-outline-warning me-1"
+                      title="Edit"
+                    >
+                      <i className="fa fa-edit"></i>
+                    </button>
+                    <button
+                      className="btn btn-sm btn-outline-danger"
+                      title="Delete"
+                    >
+                      <i className="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -226,12 +224,34 @@ useEffect(() =>{
             <div className="modal-body">
               <form onSubmit={handleAddStudent}>
                 <div className="mb-3">
+                  <label className="form-label">Seat Number</label>
+                  <input
+                    type="number"
+                    className="form-field"
+                    name="SeatNo"
+                    value={studentData.SeatNo}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
                   <label className="form-label">Full Name</label>
                   <input
                     type="text"
                     className="form-field"
                     name="Name"
                     value={studentData.Name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Course</label>
+                  <input
+                    type="text"
+                    className="form-field"
+                    name="Course"
+                    value={studentData.Course}
                     onChange={handleChange}
                     required
                   />
@@ -255,6 +275,18 @@ useEffect(() =>{
                     value={studentData.PhoneNumber}
                     onChange={handleChangePhone}
                     maxLength={10}
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Aadhar Number</label>
+                  <input
+                    type="number"
+                    className="form-field"
+                    name="AadharNo"
+                    value={studentData.AadharNo}
+                    onChange={handleChangeAadhar}
                     required
                   />
                 </div>
@@ -290,18 +322,6 @@ useEffect(() =>{
                   />
                 </div>
 
-                <div className="mb-3">
-                  <label className="form-label">Status</label>
-                  <select
-                    className="form-field"
-                    name="Status"
-                    value={studentData.Status}
-                    onChange={handleChange}
-                  >
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                  </select>
-                </div>
                 <button type="submit" className="btn btn-primary">
                   Add Student
                 </button>
