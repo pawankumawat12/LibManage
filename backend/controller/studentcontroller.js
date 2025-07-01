@@ -1,13 +1,17 @@
 const Student = require("../models/studentmodel");
 const AddStudent = async (req, res) => {
-  const { Name, Email, PhoneNumber, Fees, Address, DateOfBirth, Status } =
-    req.body;
+  const {
+    SeatNo,
+    Course,
+    AadharNo,
+    Name,
+    Email,
+    PhoneNumber,
+    Fees,
+    Address,
+    DateOfBirth,
+  } = req.body;
   try {
-    if (!Name || !PhoneNumber || !Fees) {
-      return res
-        .status(400)
-        .json({ message: "Name, PhoneNumber and Fees are required" });
-    }
     const email = await Student.findOne({ Email });
     const phoneNumber = await Student.findOne({ PhoneNumber });
 
@@ -23,16 +27,18 @@ const AddStudent = async (req, res) => {
     }
 
     const newStudent = new Student({
+      SeatNo,
+      Course,
+      AadharNo,
       Name,
       Email,
       PhoneNumber,
       Fees,
       Address,
       DateOfBirth,
-      Status,
     });
     await newStudent.save();
-    res 
+    res
       .status(201)
       .json({ message: "Student added successfully", student: newStudent });
   } catch (error) {
@@ -46,6 +52,6 @@ const GetAllDataStudents = async (req, res) => {
     res.status(200).json(studentsData);
   } catch (error) {
     res.status(400).json({ message: "Faild to get students data" });
-  } 
+  }
 };
 module.exports = { AddStudent, GetAllDataStudents };

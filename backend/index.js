@@ -15,6 +15,10 @@ app.use(cors({
 }))
 connectDB();
 app.use("/api", router);
+app.use((err, req, res, next) => {
+  console.error("Error:", err.stack);
+  res.status(500).json({ message: "Something went wrong!" });
+});
 app.listen(process.env.PORT , () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
