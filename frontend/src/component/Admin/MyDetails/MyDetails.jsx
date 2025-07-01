@@ -41,10 +41,6 @@ export default function MyDetails() {
             Address:
             <input type="text" name="address" required value={formData.address} onChange={handleChange} />
           </label>
-          <label>
-            Location:
-            <input type="text" name="location" required value={formData.location} onChange={handleChange} />
-          </label>
           <button type="submit" className="save-btn">Save</button>
         </form>
       ) : (

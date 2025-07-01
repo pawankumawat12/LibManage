@@ -7,9 +7,9 @@ function AdminSidebar({ isOpen, onLinkClick }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() =>{
+  useEffect(() => {
     const token = localStorage.getItem("token");
-    if(!token){
+    if (!token) {
       setIsLoggedIn(false);
       navigate("/Library/login");
     }
@@ -21,7 +21,7 @@ function AdminSidebar({ isOpen, onLinkClick }) {
     setIsLoggedIn(false);
     navigate("/Library/login");
   };
-  
+
   return (
     <aside className={`admin-sidebar ${isOpen ? "open" : ""}`}>
       <ul>
@@ -50,18 +50,9 @@ function AdminSidebar({ isOpen, onLinkClick }) {
             <i className="fa-solid fa-image"></i> <span>Images Library</span>
           </li>
         </Link>
-        { isLoggedIn ? (
-        <Link onClick={logout}>
-          <li>
-            <i className="fa-solid fa-right-from-bracket"></i> Logout
-          </li>
-        </Link>):(
-        <Link to="/Library/login" onClick={onLinkClick}>
-          <li>
-              <i className="fa-solid fa-right-to-bracket"></i> Login
-          </li>
-        </Link>)}
-
+        <li onClick={logout} style={{ cursor: "pointer" }}>
+          <i className="fa-solid fa-right-from-bracket"></i> Logout
+        </li>
       </ul>
     </aside>
   );

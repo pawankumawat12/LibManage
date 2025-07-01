@@ -1,44 +1,14 @@
 // src/components/Catalog.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Catalog.css';
+import GetAllBooks from '../../Hooks/Books/GetAllBook.hook';
 
 function Catalog() {
   const [selectedBook, setSelectedBook] = useState(null);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [books, setBooks] = useState([
-    {
-      title: 'The Great Gatsby',
-      author: 'F. Scott Fitzgerald',
-      category: 'Classic',
-      description: 'A novel about the American dream in the 1920s.'
-    },
-    {
-      title: 'Sapiens',
-      author: 'Yuval Noah Harari',
-      category: 'History',
-      description: 'A brief history of humankind exploring evolution and society.'
-    },
-    {
-      title: '1984',
-      author: 'George Orwell',
-      category: 'Dystopian',
-      description: 'A chilling dystopian tale about surveillance and totalitarianism.'
-    },
-    {
-      title: 'Clean Code',
-      author: 'Robert C. Martin',
-      category: 'Programming',
-      description: 'A guide to writing clean, readable, and maintainable code.'
-    },
-    {
-      title: 'The Alchemist',
-      author: 'Paulo Coelho',
-      category: 'Fiction',
-      description: 'A mystical story about destiny and pursuing dreams.'
-    },
-  ]);
-
-  
+ const  {err, bookData, getBooks} = GetAllBooks();
+ useEffect(() =>{
+  getBooks();
+ }, [])
 
   
 
@@ -47,19 +17,23 @@ function Catalog() {
       <div className='d-flex justify-content-between align-items-center mb-4'>
         <h1><i className="fa fa-book"></i> Browse Catalog</h1>
       </div>
-
-      <div className="catalog-list">
-        {books.map((book, index) => (
+<div className="catalog-list">
+{
+  bookData.map((bookdata, index) =>{
+    return(
           <div className="catalog-item" key={index}>
-            <h3>{book.title}</h3>
-            <p><strong><i className="fa fa-user"></i> Author:</strong> {book.author}</p>
-            <p><strong><i className="fa fa-tags"></i> Category:</strong> {book.category}</p>
-            <button className="catalog-btn" onClick={() => setSelectedBook(book)}>
+            <h3>{bookdata.Title}</h3>
+            <p><strong><i className="fa fa-user"></i> Author:</strong> {bookdata.Author}</p>
+            <p><strong><i className="fa fa-tags"></i> Category:</strong> {bookdata.Description}</p>
+            <button className="catalog-btn" onClick={() => setSelectedBook(bookdata)}>
               View Details
             </button>
           </div>
-        ))}
-      </div>
+    )
+  })
+}
+  </div>
+      
 
       {/* View Details Modal */}
       {selectedBook && (
