@@ -20,8 +20,99 @@
   cursor: pointer;
 }
 
+.admin-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.5rem;
+  background: #222;
+  color: #fff;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-title {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.navbar-icons {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-size: 1.3rem;
+}
+.icon-badge {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-dropdown .dropdown-menu {
+  position: absolute;
+  display: block;
+  right: 0;
+  background: #fff;
+  color: #222;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 130px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+.profile-dropdown .dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  color: #222;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.profile-dropdown .dropdown-menu button:hover {
+  background: #f0f0f0;
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .admin-navbar h2 {
+    display: none;
   }
 }

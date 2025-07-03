@@ -7,20 +7,6 @@ function AdminSidebar({ isOpen, onLinkClick }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setIsLoggedIn(false);
-      navigate("/Library/login");
-    }
-  }, []);
-  const logout = () => {
-    localStorage.removeItem("token");
-    toast.success("Logged out successfully");
-    toast.info("Please login to continue");
-    setIsLoggedIn(false);
-    navigate("/Library/login");
-  };
 
   return (
     <aside className={`admin-sidebar ${isOpen ? "open" : ""}`}>
@@ -40,19 +26,11 @@ function AdminSidebar({ isOpen, onLinkClick }) {
             <i className="fa-solid fa-book-medical"></i> <span>Add Book</span>
           </li>
         </Link>
-        <Link to="/Library/admin/details" onClick={onLinkClick}>
-          <li>
-            <i className="fa-solid fa-file-lines"></i> <span>My Details</span>
-          </li>
-        </Link>
         <Link to="/Library/admin/gallary" onClick={onLinkClick}>
           <li>
             <i className="fa-solid fa-image"></i> <span>Images Library</span>
           </li>
         </Link>
-        <li onClick={logout} style={{ cursor: "pointer" }}>
-          <i className="fa-solid fa-right-from-bracket"></i> Logout
-        </li>
       </ul>
     </aside>
   );

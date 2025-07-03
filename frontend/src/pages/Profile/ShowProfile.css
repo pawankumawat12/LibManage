@@ -1,0 +1,62 @@
+
+.ShowBackdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.ShowContainer {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ShowHeader {
+  margin-bottom: 16px;
+}
+
+.ShowTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ShowBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ShowItem label {
+  font-weight: bold;
+  display: block;
+}
+
+.ShowItem p {
+  margin: 4px 0 0;
+  color: #333;
+}
+
+.ShowFooter {
+  display: flex;
+  justify-content: center;
+}
+
+.closeButton {
+  padding: 8px 16px;
+  background-color: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.closeButton:hover {
+  background-color: #0f172a;
+}
