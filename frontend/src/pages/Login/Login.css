@@ -45,11 +45,11 @@
   transition: all 0.3s ease;
 }
 
-.email,
-.password {
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 10px 12px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
@@ -57,10 +57,11 @@
   transition: border 0.3s;
 }
 
-.email:focus,
-.password:focus {
+input[type="email"]:focus,
+input[type="password"]:focus {
   border-color: #3b82f6;
 }
+
 .login-btn {
   width: 100%;
   padding: 12px;
@@ -84,14 +85,20 @@
   color: #555;
 }
 
-.or span {  
+.or span {
   font-weight: bold;
 }
 
 .or p {
   font-weight: 500;
   margin-top: 5px;
-    color: #0713259c;
+  color: #0713259c;
+}
+
+.reglink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .social-login {
@@ -120,14 +127,9 @@
   transition: background-color 0.3s;
 }
 
-.reglink{
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-}
 .google-btn:hover {
-background-color: #a3281d;}
-
+  background-color: #a3281d;
+}
 
 @media (max-width: 480px) {
   .modal-content {
