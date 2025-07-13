@@ -4,33 +4,30 @@ import { toast } from "react-toastify";
 
 const AuthHook = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const authRegister = async (adminData) => {
     setIsLoading(true);
-    setError(null);
     try {
       const response = await fetch("http://localhost:8080/api/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adminData),
       });
       const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
-      }
+
+      if (!response.ok) throw new Error(data.message || "Something went wrong");
+
       toast.success("User registered successfully!");
-        navigate("/Library/login");
-        toast.success("Please login to continue");
+      navigate("/Library/login");
     } catch (error) {
-      setError(error.message || "Something went wrong");
       toast.error(error.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
   };
-  return { isLoading, error, authRegister };
+
+  return { isLoading, authRegister };
 };
+
 export default AuthHook;

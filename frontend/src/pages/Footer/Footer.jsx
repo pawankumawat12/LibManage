@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 
 function Footer() {
+  const {user} = useContext(UserContext);
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -25,9 +28,9 @@ function Footer() {
 
         <div className="footer-section contact">
           <h3>Contact</h3>
-          <p>Email: support @librarysys.com</p>
-          <p>Phone: +91 98765 43210</p>
-          <p>Address: 123 Library Street, Jaipur, Rajasthan</p>
+          <p>Email: {user.Email}</p>
+          <p>Phone: {user.PhoneNumber}</p>
+          <p>Address: { user.Address}</p>
         </div>
       </div>
 

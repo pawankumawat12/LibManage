@@ -26,7 +26,6 @@ function Login() {
     }
 
     const result = await authLogin(formData);
-
     if (result.success) {
       toast.success(result.message);
       navigate("/Library/admin/dashboard");
@@ -50,7 +49,6 @@ function Login() {
           <div className="modal-body">
             <input
               type="email"
-              className="email"
               name="Email"
               placeholder="Email"
               value={formData.Email}
@@ -58,12 +56,12 @@ function Login() {
             />
             <input
               type="password"
-              className="password"
               name="Password"
               placeholder="Password"
               value={formData.Password}
               onChange={handleChange}
             />
+
             <button className="login-btn" type="submit" disabled={isLoading}>
               {isLoading ? "Logging in..." : "Login"}
             </button>
@@ -71,10 +69,10 @@ function Login() {
             <div className="or">
               <span>OR</span>
               <p>
-                Don't have an account?
+                Don't have an account?{" "}
                 <Link to="/Library/register" className="reglink">
                   SignUp
-                </Link>{" "}
+                </Link>
               </p>
             </div>
 
