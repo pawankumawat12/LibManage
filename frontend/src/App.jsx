@@ -20,9 +20,6 @@ import Dashboard from "./component/Admin/Dashboard/Dashboard";
 import Student from "./component/Admin/Student/Student";
 import Books from "./component/Admin/Books/Books";
 import Gallary from "./component/Admin/Gallary/Gallary";
-import Profile from "./pages/Profile/Profile";
-import ShowProfile from "./pages/Profile/ShowProfile";
-import EditProfile from "./pages/Profile/EditProfile";
 function AppContent() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/Library/admin");
@@ -55,9 +52,6 @@ function AppContent() {
           <Route path="students" element={<Student />} />
           <Route path="books" element={<Books />} />
           <Route path="gallary" element={<Gallary />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="showProfile" element={<ShowProfile />} />
-          <Route path="editProfile" element={<EditProfile />} />
         </Route>
       </Routes>
       {!isAdminRoute && <Footer />}

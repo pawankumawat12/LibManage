@@ -7,28 +7,25 @@ function AdminNavbar({ toggleSidebar }) {
   const handleDropDown = () => {
     setShowdropdown((prev) => !prev);
   };
-const dropdownRef = useRef(null);
+  const dropdownRef = useRef(null);
 
-useEffect(() => {
-  function handleClick(event) {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target)
-    ) {
-      setShowdropdown(false);
+  useEffect(() => {
+    function handleClick(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowdropdown(false);
+      }
     }
-  }
-  if (showdropdown) {
-    document.addEventListener("mousedown", handleClick);
-  }
-  return () => {
-    document.removeEventListener("mousedown", handleClick);
-  };
-}, [showdropdown]);
+    if (showdropdown) {
+      document.addEventListener("mousedown", handleClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, [showdropdown]);
   const navigate = useNavigate();
-  useEffect(() =>{
+  useEffect(() => {
     setShowdropdown(false);
-  }, [])
+  }, []);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -43,10 +40,6 @@ useEffect(() => {
     navigate("/Library/login");
   };
 
-  const profile = () => {
-    setShowdropdown(false);
-    navigate("/Library/admin/profile");
-  };
   return (
     <nav className="admin-navbar">
       <button className="menu-toggle" onClick={toggleSidebar}>
@@ -69,8 +62,8 @@ useEffect(() => {
             onClick={handleDropDown}
           ></i>
           {showdropdown && (
-            <div className="dropdown-menu"  ref={dropdownRef}>
-              <button onClick={profile}> Profile</button>
+            <div className="dropdown-menu" ref={dropdownRef}>
+              <button> Profile</button>
               <button onClick={logout}>Logout</button>
             </div>
           )}
